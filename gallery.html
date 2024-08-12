@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="icon" type="image/png" href="./img/CILKGax.png" />
+    <!-- Tiêu đề của trang ảnh kĩ niệm -->
+    <title>Ảnh Của Người Con Gái Tui Yêu Nè ❤️️</title>
+    <link rel="stylesheet" href="./css/gallery.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <style>
+        /* Intro CSS */
+        #playButton {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 15px 30px;
+            font-size: 20px;
+            background-color: #d3d3d3; /* Màu chìm */
+            color: rgb(12, 12, 12);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #playButton:hover {
+            background-color: #a9a9a9; /* Màu khi di chuột */
+        }
+
+        #intro {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url(img/hinh-trai-tim-dep_14.jpg) no-repeat center center;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1em;
+            z-index: 10000;
+            transition: opacity 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div id="intro">
+        <button id="playButton">Click Vào Đây Nhe ❤️️</button>
+    </div>
+
+    <div class="buttons" style="display: none;">
+        <a href="index.html" class="btn btn-bir">Sinh nhật Vân Anh ❤️️</a>
+        <a href="timeline.html" class="btn btn-timeline">Lời Chúc Của Tui Nè ❤️️</a>
+        <a href="gallery.html" class="btn btn-gallery">Ảnh Của Người Con Gái Tui Yêu Nè ❤️️.</a>
+    </div>
+
+    <!-- 6. Thay tất cả bằng hình ảnh của bạn -->
+    <div class="gallery" id="gallery" style="display: none;">
+        <div class="gallery-item">
+            <div class="content"><img src="img/pic4.jpg" alt="Description of image 1"></div>
+        </div>
+        <div class="gallery-item">
+            <div class="content"><img src="img/pic 2.jpg" alt="Description of image 2"></div>
+        </div>
+        <div class="gallery-item">
+            <div class="content"><img src="img/pic 3.jpg" alt="Description of image 3"></div>
+        </div>
+        <div class="gallery-item">
+            <div class="content"><img src="img/pic 1.png" alt="Description of image 4"></div>
+        </div>
+        <div class="gallery-item">
+            <div class="content"><img src="img/pic5.jpg" alt="Description of image 5"></div>
+        </div>
+    </div>
+
+    <!-- Phần nhạc -->
+    <audio id="myAudio" src="music/Nhạc.mp3" type="audio/mpeg"></audio>
+
+    <div id="lightbox" class="lightbox">
+        <span class="close">&times;</span>
+        <img class="lightbox-content" id="lightboxImg">
+    </div>
+
+    <script>
+        // Lightbox functionality
+        var lightbox = document.getElementById("lightbox");
+        var lightboxImg = document.getElementById("lightboxImg");
+        var galleryItems = document.getElementsByClassName("gallery-item");
+
+        for (var i = 0; i < galleryItems.length; i++) {
+            galleryItems[i].addEventListener("click", function() {
+                lightbox.style.display = "block";
+                lightboxImg.src = this.getElementsByTagName("img")[0].src;
+            });
+        }
+
+        var close = document.getElementsByClassName("close")[0];
+        close.onclick = function() {
+            lightbox.style.display = "none";
+        }
+
+        // Play music and show content
+        document.getElementById("playButton").addEventListener("click", function() {
+            var audio = document.getElementById("myAudio");
+            audio.play().catch(function(error) {
+                console.log("Play was prevented: ", error);
+            });
+            
+            document.getElementById('intro').style.opacity = '0';
+            setTimeout(function() {
+                document.getElementById('intro').style.display = 'none';
+                document.querySelector('.buttons').style.display = 'block';
+                document.getElementById('gallery').style.display = 'flex';
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

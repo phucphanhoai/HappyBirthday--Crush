@@ -1,0 +1,118 @@
+body {
+  background: url("../img/wood.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s forwards;
+  background-image: url('path/to/your/background-image.jpg');
+  background-size: cover; /* Để hình nền bao phủ toàn bộ vùng gallery */
+  background-position: center; /* Canh giữa hình nền */
+}
+
+@keyframes fadeInUp {
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.gallery-item {
+  flex: 1 1 calc(20% - 20px); /* Chia đều thành 5 phần */
+  margin: 10px;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: fadeIn 0.5s forwards;
+  animation-delay: calc(var(--i) * 0.3s);
+}
+
+.gallery-item:nth-child(1) { --i: 1; }
+.gallery-item:nth-child(2) { --i: 2; }
+.gallery-item:nth-child(3) { --i: 3; }
+.gallery-item:nth-child(4) { --i: 4; }
+.gallery-item:nth-child(5) { --i: 5; }
+
+@keyframes fadeIn {
+  to {
+      opacity: 1;
+      transform: scale(1);
+  }
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+}
+
+.gallery-item img:hover {
+  transform: scale(1.05);
+}
+
+/* Lightbox CSS */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  animation: fadeInLightbox 0.5s forwards;
+}
+
+@keyframes fadeInLightbox {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+.lightbox-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  animation: zoomIn 0.5s forwards;
+}
+
+@keyframes zoomIn {
+  from {
+      transform: scale(0.8);
+  }
+  to {
+      transform: scale(1);
+  }
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
